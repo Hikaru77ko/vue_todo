@@ -34,14 +34,14 @@
 export default {
     data (){
       return {
-          addText: "",
+          addText: '',
           tasks: []
       }
     },
     methods: {
       addTask: function() {
-          this.tasks.push({task:this.addText, state:"作業中", delete:"削除"});
-          this.addText = "";
+          this.tasks.push({ task: this.addText, state: '作業中', delete: '削除' });
+          this.addText = '';
       }
     }
 }
