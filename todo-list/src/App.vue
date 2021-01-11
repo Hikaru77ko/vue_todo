@@ -21,13 +21,13 @@
           <td>{{ task.task }}</td>
           <td>
             <button>{{ task.state }}</button
-            ><button @click="deleatTask">{{ task.delete }}</button>
+            ><button @click="deleatTask">削除</button>
           </td>
         </tr>
       </tbody>
     </table>
     <h2>新規タスクの追加</h2>
-    <input v-model.trim="addText" type="text" name="task" />
+    <input v-model.trim="content" type="text" name="task" />
     <button @click="addTask">追加</button>
   </div>
 </template>
@@ -36,19 +36,19 @@
 export default {
   data() {
     return {
-      addText: "",
+      content: '',
       tasks: [],
+      id: 0
     };
   },
   methods: {
     addTask: function() {
       this.tasks.push({
         id: this.id++,
-        task: this.addText,
-        state: "作業中",
-        delete: "削除",
+        task: this.content,
+        state: '作業中',
       });
-      this.addText = "";
+      this.content = '';
     },
     deleatTask: function(index) {
       this.tasks.splice(index, 1);
