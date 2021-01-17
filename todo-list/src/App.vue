@@ -20,8 +20,8 @@
           <td>{{ index }}</td>
           <td>{{ task.task }}</td>
           <td>
-            <button>{{ task.state }}</button
-            ><button @click="deleatTask">削除</button>
+            <button @click="chengStateNum(task)">{{ state[task.stateNum] }}</button
+            ><button @click="deleatTask()">削除</button>
           </td>
         </tr>
       </tbody>
@@ -38,7 +38,9 @@ export default {
     return {
       content: '',
       tasks: [],
-      id: 0
+      id: 0,
+      stateNum: 1,
+      state: ['完了','作業中']
     };
   },
   methods: {
@@ -46,13 +48,16 @@ export default {
       this.tasks.push({
         id: this.id++,
         task: this.content,
-        state: '作業中',
+        stateNum: this.stateNum
       });
       this.content = '';
     },
     deleatTask: function(index) {
       this.tasks.splice(index, 1);
     },
+    chengStateNum: function(task) {
+      task.stateNum = task.stateNum ? 0 : 1
+    }
   },
 };
 </script>
