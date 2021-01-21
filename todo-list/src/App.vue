@@ -2,11 +2,30 @@
   <div id="app">
     <h1>ToDoリスト</h1>
     <div>
-      <input type="radio" id="all" name="state" value="all" v-model="filter" checked />
+      <input
+        type="radio"
+        id="all"
+        name="state"
+        value="all"
+        v-model="filter"
+        checked
+      />
       <label for="all">すべて</label>
-      <input type="radio" id="working" name="state" value="work" v-model="filter"/>
+      <input
+        type="radio"
+        id="working"
+        name="state"
+        value="work"
+        v-model="filter"
+      />
       <label for="working">作業中</label>
-      <input type="radio" id="done" name="state" value="complete" v-model="filter"/>
+      <input
+        type="radio"
+        id="done"
+        name="state"
+        value="complete"
+        v-model="filter"
+      />
       <label for="done">完了</label>
     </div>
     <table>
@@ -16,11 +35,19 @@
         <th align="left">状態</th>
       </thead>
       <tbody>
-        <tr v-for="(task, index) in tasks" v-bind:key="task.id" :class="[{'none':task.stateNum === 1 && filter === 'complete'},{'none':task.stateNum === 0 && filter === 'work'}]">
+        <tr
+          v-for="(task, index) in tasks"
+          :key="task.id"
+          :class="[
+            { none: task.stateNum === 1 && filter === 'complete' },
+            { none: task.stateNum === 0 && filter === 'work' },
+          ]"
+        >
           <td>{{ index }}</td>
           <td>{{ task.task }}</td>
           <td>
-            <button @click="changeStateNum(task)">{{ state[task.stateNum] }}</button
+            <button @click="changeStateNum(task)">
+              {{ state[task.stateNum] }}</button
             ><button @click="deleteTask()">削除</button>
           </td>
         </tr>
@@ -36,12 +63,12 @@
 export default {
   data() {
     return {
-      content: '',
+      content: "",
       tasks: [],
       id: 0,
       stateNum: 1,
-      state: ['完了','作業中'],
-      filter:'all'
+      state: ["完了", "作業中"],
+      filter: "all",
     };
   },
   methods: {
@@ -49,22 +76,22 @@ export default {
       this.tasks.push({
         id: this.id++,
         task: this.content,
-        stateNum: this.stateNum
+        stateNum: this.stateNum,
       });
-      this.content = '';
+      this.content = "";
     },
     deleteTask: function(index) {
       this.tasks.splice(index, 1);
     },
     changeStateNum: function(task) {
-      task.stateNum = task.stateNum ? 0 : 1
-    }
+      task.stateNum = task.stateNum ? 0 : 1;
+    },
   },
 };
 </script>
 
 <style>
-  .none{
-    display: none;
-  }
+.none {
+  display: none;
+}
 </style>
